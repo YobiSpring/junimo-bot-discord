@@ -14,7 +14,7 @@ export default {
         const userMoney = getMoney(interaction.user.id);
 
         const embed = new EmbedBuilder()
-            .setColor(0xF1C40F) // Dorado
+            .setColor(0xF1C40F) 
             .setTitle(`Billetera de ${interaction.user.username}`)
             .setDescription(`Actualmente tienes... **${userMoney} G** 💰`);
         

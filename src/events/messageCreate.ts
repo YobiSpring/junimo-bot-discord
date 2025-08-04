@@ -1,4 +1,5 @@
 // src/events/messageCreate.ts
+
 import { Events, Message } from 'discord.js';
 import { getCurrentSeasonIndex } from '../utils/updatePresence.js';
 import { seasons } from '../config/seasons.js';

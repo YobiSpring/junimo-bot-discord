@@ -1,17 +1,17 @@
-// src/utils/missionManager.ts (VERSIÓN FINAL CON TODAS LAS IMPORTACIONES)
+// src/utils/missionManager.ts
 
 // --- Sección de Importaciones ---
+
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { Client, TextChannel } from 'discord.js'; // ¡IMPORTACIONES AÑADIDAS!
+import { Client, TextChannel } from 'discord.js'; 
 import { seasonalMissionTemplates } from '../config/missions.js';
 import { qualityMultipliers, basePrices } from '../config/prices.js';
 import { seasons } from '../config/seasons.js';
 import { getCurrentSeasonIndex } from './updatePresence.js';
 import { getUserData, Item, saveUserData } from './inventoryManager.js';
 
-// --- Definición de Tipos y Estructuras ---
 type Quality = 'normal' | 'plata' | 'oro' | 'iridio';
 
 interface ActiveMission {
@@ -27,12 +27,10 @@ interface ActiveMission {
     basketQuantity?: number;
 }
 
-// --- Gestión de la "Base de Datos" de la Misión ---
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const missionDbPath = path.resolve(__dirname, '../../mission.json');
 
 
-// Esta es la nueva "ventana" pública para ver la misión.
 export function getActiveMission(): ActiveMission {
     try {
         if (!fs.existsSync(missionDbPath)) return { active: false } as ActiveMission;
@@ -49,9 +47,8 @@ function saveActiveMission(mission: ActiveMission) {
 }
 
 
-// --- Generador de Misiones ---
 export function generateNewMission() {
-    const currentMission = getActiveMission(); // Usamos la función local
+    const currentMission = getActiveMission(); 
     
     if (currentMission.active && Date.now() < currentMission.expiresAt) {
         console.log('Ya hay una misión activa y vigente. No se generará una nueva');
@@ -80,25 +77,21 @@ export function generateNewMission() {
         missionType: template.missionType,
         basketQuantity: template.basketQuantity,
 
-            // --- Lógica de Relleno Condicional ---
-        // Asignamos valores a 'itemName' y 'quantity' basándonos en el tipo de misión.
-        // Aunque no se usen siempre, la interfaz requiere que existan.
         itemName: template.missionType === 'ANY_ONE' 
-            ? '' // Para misiones de cesta, el 'itemName' específico es irrelevante. Lo dejamos vacío.
-            : template.itemPool[Math.floor(Math.random() * template.itemPool.length)], // Para misiones de recolección, elegimos uno del pool.
+            ? '' 
+            : template.itemPool[Math.floor(Math.random() * template.itemPool.length)], 
         
         quantity: template.missionType === 'ANY_ONE' 
-            ? 0 // La cantidad es irrelevante, la define 'basketQuantity'. Ponemos 0.
-            : Math.floor(Math.random() * 4) + 2, // Tu rango de 2 a 5 para misiones de recolección.
+            ? 0
+            : Math.floor(Math.random() * 4) + 2, 
     };
     
     saveActiveMission(newMission);
     console.log(`Nueva misión de ${currentSeasonName} generada.`);
 }
 
-// --- Función de Entrega Unificada ---
 export function attemptDelivery(userId: string, targetItemName?: string | null): { success: boolean; message: string } {
-    const mission = getActiveMission(); // Usamos la función local
+    const mission = getActiveMission();
 
     if (!mission.active) return { success: false, message: 'No hay ninguna misión activa.' };
     if (Date.now() > mission.expiresAt) {
@@ -137,7 +130,7 @@ export function attemptDelivery(userId: string, targetItemName?: string | null):
     }
 
     let quantityToCollect = itemsToDeliver.quantity;
-    let totalValueDelivered = 0; // Usaremos esto para el bonus
+    let totalValueDelivered = 0; 
     const collectedItemsSummary: string[] = [];
 
     for (const stack of availableStacks) {
@@ -173,7 +166,6 @@ export function attemptDelivery(userId: string, targetItemName?: string | null):
     return { success: true, message: successMessage };
 }
 
-// --- Anuncio de Misión ---
 export async function announceNewMission(client: Client) {
     const mission = getActiveMission();
     if (!mission.active) return;

@@ -62,8 +62,8 @@ export const seasonalMissionTemplates: Record<string, MissionTemplate[]> = {
         {
             requester: 'Robin',
             dialogue: 'Estoy trabajando en un nuevo proyecto de carpintería y necesito algo de material del bosque. ¡Cualquiera de estos me vendría de perlas!',
-            itemPool: ['Seta Común', 'Avellana', 'Mora'], // La "cesta" de opciones
-            missionType: 'ANY_ONE', // ¡La marcamos como tipo "Cesta"!
+            itemPool: ['Seta Común', 'Avellana', 'Mora'], 
+            missionType: 'ANY_ONE', 
             basketQuantity: 3,
             minReward: 600,
             maxReward: 800,
@@ -73,7 +73,7 @@ export const seasonalMissionTemplates: Record<string, MissionTemplate[]> = {
         {
             requester: 'Clint',
             dialogue: 'El invierno es largo y aburrido. ¡Estoy buscando gemas o minerales interesantes que encontrarías en la cueva de hielo!',
-            itemPool: ['Raiz Invernal', 'Helecho'], // Usamos estos como sustitutos de gemas
+            itemPool: ['Raiz Invernal', 'Helecho'],
             minReward: 400,
             maxReward: 800,
         },

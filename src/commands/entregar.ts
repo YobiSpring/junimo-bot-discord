@@ -19,7 +19,6 @@ export default {
         const itemName = interaction.options.getString('objeto');
         const result = attemptDelivery(interaction.user.id, itemName);
 
-        // Refinamiento: Construimos el embed base aquí.
         const embed = new EmbedBuilder()
             .setDescription(result.message);
 

@@ -1,7 +1,7 @@
 // src/config/shop.ts (VERSIÓN CON CATEGORÍAS)
 
 export interface ShopItem {
-    id: string; // El ID único que usará el usuario para comprar
+    id: string; 
     name: string;
     price: number;
     description: string;
@@ -13,7 +13,6 @@ export interface ShopCategory {
     items: ShopItem[];
 }
 
-// Nuestro nuevo catálogo, ahora un array de categorías.
 export const shopCategories: ShopCategory[] = [
     {
         name: "🌱 Semillas de Temporada",

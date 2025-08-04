@@ -3,13 +3,10 @@
 import { Events, Interaction } from 'discord.js';
 
 export default {
-    // Define el nombre del evento que este archivo manejará.
     name: Events.InteractionCreate,
     
-    // La función 'execute' se llamará cada vez que ocurra una interacción.
     async execute(interaction: Interaction) {
         
-        // --- GESTOR DE COMANDOS DE BARRA DIAGONAL ---
         if (interaction.isChatInputCommand()) {
             const command = interaction.client.commands.get(interaction.commandName);
 
@@ -19,23 +16,18 @@ export default {
             }
 
             try {
-                // Ejecuta la función 'execute' del comando correspondiente.
                 await command.execute(interaction);
             } catch (error) {
                 console.error(`Error al ejecutar el comando ${interaction.commandName}:`, error);
-                // Envía una respuesta de error genérica y efímera al usuario.
                 await interaction.reply({ content: '¡Oh no! Algo salió mal al ejecutar este comando.', ephemeral: true });
             }
-            return; // Termina la ejecución para no procesar otros tipos de interacción.
+            return;
         }
 
-        // --- GESTOR DE BOTONES ---
         if (interaction.isButton()) {
             const { customId, user } = interaction;
 
-            // Lógica para los botones de borrar inventario
             if (customId === 'confirm_delete_inv') {
-                // Importamos la función dinámicamente solo cuando se necesita.
                 const { deleteInventory } = await import('../utils/inventoryManager.js');
                 deleteInventory(user.id);
                 await interaction.update({ 
@@ -51,7 +43,6 @@ export default {
                 });
             }
 
-            // Lógica para los botones de la tienda
             if (customId.startsWith('shop_')) {
                 const { createShopEmbed, createShopButtons } = await import('../commands/tienda.js');
                 const [_, action, currentPageStr] = customId.split('_');
@@ -74,15 +65,12 @@ export default {
             return;
         }
 
-        // --- GESTOR DE AUTOCOMPLETADO ---
         if (interaction.isAutocomplete()) {
             const command = interaction.client.commands.get(interaction.commandName);
 
-            // Si el comando no existe o no tiene una función de autocompletado, no hacemos nada.
             if (!command || !command.autocomplete) return;
 
             try {
-                // Ejecuta la función 'autocomplete' del comando correspondiente.
                 await command.autocomplete(interaction);
             } catch (error) {
                 console.error(`Error en el autocompletado para ${interaction.commandName}:`, error);

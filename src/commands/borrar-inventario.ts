@@ -11,7 +11,7 @@ export default {
         if (!interaction.isChatInputCommand()) return;
 
         const embed = new EmbedBuilder()
-            .setColor(0xE74C3C) // Rojo peligro
+            .setColor(0xE74C3C) 
             .setTitle('⚠️ Confirmación de Borrado ⚠️')
             .setDescription('¿Estás absolutamente seguro de que quieres borrar todo tu inventario? **Esta acción no se puede deshacer.**');
 
@@ -31,7 +31,7 @@ export default {
         await interaction.reply({ 
             embeds: [embed], 
             components: [row],
-            flags: [MessageFlags.Ephemeral] // Solo tú puedes ver esto
+            flags: [MessageFlags.Ephemeral] 
         });
     },
 };

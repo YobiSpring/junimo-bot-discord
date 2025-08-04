@@ -3,7 +3,7 @@
 import { SlashCommandBuilder, Interaction, EmbedBuilder, AutocompleteInteraction, ChatInputCommandInteraction, MessageFlags } from 'discord.js';
 import { purchaseItem } from '../utils/inventoryManager.js';
 import { shopCategories } from '../config/shop.js';
-import { Command } from '../index.js'; // Importamos la interfaz
+import { Command } from '../index.js';
 
 const ComprarCommand: Command = {
     data: new SlashCommandBuilder()
@@ -19,7 +19,6 @@ const ComprarCommand: Command = {
                 .setDescription('La cantidad que quieres comprar. Por defecto es 1.')
                 .setMinValue(1)),
     
-    // La función de autocompletado ahora vive DENTRO del objeto del comando
     async autocomplete(interaction: AutocompleteInteraction) {
         const focusedValue = interaction.options.getFocused().toLowerCase();
         
@@ -46,7 +45,6 @@ const ComprarCommand: Command = {
                 .setTitle('Artículo no encontrado')
                 .setDescription(`❌ No he podido encontrar ningún artículo con el ID \`${itemId}\`.`);
             
-            // ¡LA CORRECCIÓN!
             await interaction.reply({ embeds: [errorEmbed], flags: [MessageFlags.Ephemeral] });
             return; 
         }

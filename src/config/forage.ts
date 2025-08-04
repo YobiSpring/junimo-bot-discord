@@ -1,21 +1,31 @@
-// src/config/forage.ts (VERSIÓN CON RAREZA)
+// src/config/forage.ts
 
 export const itemEmojis: { [key: string]: string } = {
     'Puerro': '🥬',
     'Diente de León': '🌼',
-    'Colmenilla': '🫚', // ¡Raro!
+    'Colmenilla': '🫚', 
     'Uva': '🍇',
     'Guisante Dulce': '🌱',
-    'Helecho': '🌿', // Raro
+    'Helecho': '🌿', 
     'Seta Común': '🍄',
     'Avellana': '🌰',
-    'Mora': '🫐', // Raro
+    'Mora': '🫐', 
     'Raíz Invernal': '🥔',
-    'Azafrán': '🪻', // Raro
+    'Azafrán': '🪻', 
     'Acebo': '🌸',
+
+    'Semillas de Chirivía': '🌱',
+    'Semillas de Coliflor': '🥬',
+    'Semillas de Judía': '🌿',
+    'Semillas de Patata': '🥔',
+    'Fertilizante Básico': '🟤',
+    'Aspersor de Calidad': '💧',
+    'Espantapájaros': '🗿',
+    'Ramo de Flores': '💐',
+    'Mochila Grande': '🎒',
+    'Recetario Básico': '📖',
 };
 
-// Define qué objetos se pueden encontrar, ahora separados por rareza.
 export const forageItems: { 
     [season: string]: {
         common: string[],

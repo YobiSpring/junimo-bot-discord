@@ -1,6 +1,5 @@
 // src/config/prices.ts
 
-// Precio base de cada objeto recolectable
 export const basePrices: { [key: string]: number } = {
     'Puerro': 60,
     'Diente de León': 40,
@@ -14,9 +13,19 @@ export const basePrices: { [key: string]: number } = {
     'Raíz Invernal': 70,
     'Azafrán': 60,
     'Acebo': 80,
+
+    'Semillas de Chirivía': 10, 
+    'Semillas de Coliflor': 40,
+    'Semillas de Judía': 30,
+    'Semillas de Patata': 25,
+    'Fertilizante Básico': 50,
+    'Aspersor de Calidad': 225,
+    'Espantapájaros': 25,
+    'Ramo de Flores': 100,
+    'Mochila Grande': 0, 
+    'Recetario Básico': 0,
 };
 
-// Multiplicadores de precio por calidad
 export const qualityMultipliers: { [key: string]: number } = {
     'normal': 1,
     'plata': 1.25,

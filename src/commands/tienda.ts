@@ -3,7 +3,6 @@
 import { SlashCommandBuilder, Interaction, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, MessageFlags } from 'discord.js';
 import { shopCategories } from '../config/shop.js';
 
-// Función de ayuda para crear el Embed de una página específica
 export function createShopEmbed(page: number): EmbedBuilder {
     const category = shopCategories[page];
     
@@ -24,7 +23,6 @@ export function createShopEmbed(page: number): EmbedBuilder {
     return embed;
 }
 
-// Función de ayuda para crear la fila de botones
 export function createShopButtons(page: number): ActionRowBuilder<ButtonBuilder> {
     const row = new ActionRowBuilder<ButtonBuilder>()
         .addComponents(
@@ -32,12 +30,12 @@ export function createShopButtons(page: number): ActionRowBuilder<ButtonBuilder>
                 .setCustomId(`shop_prev_${page}`)
                 .setLabel('⬅️ Anterior')
                 .setStyle(ButtonStyle.Secondary)
-                .setDisabled(page === 0), // Desactiva el botón si es la primera página
+                .setDisabled(page === 0), 
             new ButtonBuilder()
                 .setCustomId(`shop_next_${page}`)
                 .setLabel('Siguiente ➡️')
                 .setStyle(ButtonStyle.Secondary)
-                .setDisabled(page === shopCategories.length - 1) // Desactiva si es la última
+                .setDisabled(page === shopCategories.length - 1) 
         );
     return row;
 }
@@ -57,7 +55,6 @@ export default {
         await interaction.reply({ 
             embeds: [embed],
             components: [buttons],
-            // Lo hacemos efímero para que solo el usuario que lo usó pueda interactuar
             flags: [MessageFlags.Ephemeral] 
         });
     },

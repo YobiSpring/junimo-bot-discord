@@ -41,7 +41,6 @@ const rest = new REST({ version: '10' }).setToken(token);
         console.log(`\nEmpezando a registrar ${commands.length} comandos (/) en tu servidor de pruebas.`);
 
         const data = await rest.put(
-            // Esto asegura que los comandos solo se registren en tu servidor de pruebas
             Routes.applicationGuildCommands(clientId, guildId),
             { body: commands },
         );
