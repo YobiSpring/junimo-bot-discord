@@ -5,7 +5,7 @@
     "moduleResolution": "NodeNext",
     "strict": true,
     "esModuleInterop": true,
-    "outDir": "./dist", // El JavaScript compilado irá aquí
-    "rootDir": "./src"  // Tu código TypeScript vivirá aquí
+    "outDir": "./dist",
+    "rootDir": "./src" 
   }
 }
