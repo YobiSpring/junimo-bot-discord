@@ -1,0 +1,14 @@
+{
+  "active": true,
+  "requester": "Linus",
+  "reward": 233,
+  "dialogue": "El aire se vuelve frío... Necesito recolectar comida para el invierno. Cualquier cosa ayuda.",
+  "expiresAt": 1754269197434,
+  "itemPool": [
+    "Avellana",
+    "Mora",
+    "Seta Común"
+  ],
+  "itemName": "Mora",
+  "quantity": 3
+}

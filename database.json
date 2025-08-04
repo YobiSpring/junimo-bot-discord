@@ -1,0 +1,15 @@
+{
+  "743118605914472478": {
+    "id": "743118605914472478",
+    "money": 0,
+    "inventory": [
+      {
+        "name": "Mora",
+        "quality": "normal",
+        "quantity": 2,
+        "isRare": true
+      }
+    ],
+    "lastForageTimestamp": 1754267672894
+  }
+}
